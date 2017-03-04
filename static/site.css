@@ -1,0 +1,62 @@
+/* 基础规范 */
+
+.color {
+  width: 200px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 2px; 
+  padding: 10px;
+  margin: 10px 10px 10px 0;
+}
+
+.color.assertive {
+  background: #ea5a49; color: #fff;
+}
+.color.positive {
+  background: #4a90e2; color: #fff;
+}
+.color.balanced {
+  background: #44cc00; color: #fff;
+}
+.color.energized {
+  background: #ffbd17; color: #fff;
+}
+.color.calm {
+  background: #11c1f3; color: #fff;
+}
+.color.royal {
+  background: #b5b5b5; color: #fff;
+}
+.color.stable {
+  background: #f5f5f5; color: #484746;
+}
+.color.light {
+  background: #fff; color: #484746;
+}
+.color.dark {
+  background: #484746; color: #fff;
+}
+
+.color span {
+  float: right;
+}
+
+.device-ios { 
+  width: 467px; 
+  height: 800px; 
+  background: url(devices-sprite.jpg) center top no-repeat; 
+  background-size: 467px; 
+  margin: 0 auto; 
+  text-align: center; 
+}
+
+.demo-ios { 
+  margin-top: 85px; 
+  width: 320px; 
+  height: 568px; 
+}
+
+body.mobile .device-ios {
+  display: none;
+  visibility: hidden;
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <title>Vonic Documents</title>
+  <link rel="stylesheet" href="https://unpkg.com/docute@2/dist/docute.css">
+  <link rel="stylesheet" href="./static/site.css">
+</head>
+<body>
+  <!-- don't remove this part start -->
+  <div id="app"></div>
+  <script src="./config.js"></script>
+  <script src="https://unpkg.com/docute@2/dist/docute.js"></script>
+  <!-- don't remove this part end -->
+
+  <script>
+    // 是否为移动终端
+    var u = navigator.userAgent;
+    var isMobile = !!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/)&&u.indexOf('QIHU')&&u.indexOf('Chrome')<0;
+    if (isMobile) document.body.classList.add('mobile')
+  </script>
+</body>
+</html>
