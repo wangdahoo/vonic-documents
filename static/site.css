@@ -1,3 +1,19 @@
+.code-name {
+  font-family: "Monoton", sans-serif;
+  font-size: 60px;
+  font-weight: normal;
+  color: #47B584;
+}
+
+.code-desc {
+  font-family: "Josefin Sans", sans-serif;
+  color: #999;
+}
+
+.code-name, .code-desc {
+  text-align: center;
+}
+
 /* 基础规范 */
 
 .color {

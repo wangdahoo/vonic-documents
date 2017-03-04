@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Getting Started</title>
+    <title>Component and Service</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,22 +31,16 @@
     </style>
 
     <!-- templates -->
-    <script type="x-template" id="index">
-      <div class="page has-navbar" v-nav="{ title: 'Home' }">
-        <div class="page-content text-center">
-          <h2 class="padding" v-text="msg"></h2>
+    <script type="x-template" id="component-and-service">
+      <div class="page has-navbar" v-nav="{'title': 'Component and Service'}">
+        <div class="page-content padding padding-top">
+          <md-button class="button button-assertive button-block">
+            just a button
+          </md-button>
 
-          <router-link class="button button-assertive" to="/about">
-            <i class="ion-information-circled"></i> About
-          </router-link>
-        </div>
-      </div>
-    </script>
-
-    <script type="x-template" id="about">
-      <div class="page has-navbar" v-nav="{ title: 'About', showBackButton: true, onBackButtonClick: back }">
-        <div class="page-content text-center">
-          <h2 class="padding">Nothing here.</h2>
+          <md-button class="button button-balanced button-block" @click.native="onClick()">
+            show toast
+          </md-button>
         </div>
       </div>
     </script>
@@ -54,27 +48,17 @@
     <script>
       // Page Components
       var Index = {
-        template: '#index',
-        data() {
-          return {
-            msg: 'Hello! Vonic.'  
-          }
-        }
-      }
-
-      var About = {
-        template: '#about',
+        template: '#component-and-service',
         methods: {
-          back() {
-            $router.back('/')
+          onClick() {
+            $toast.show("button clicked.")
           }
         }
       }
 
       // Routes
       var routes = [
-        { path: '/', component: Index },
-        { path: '/about', component: About }
+        { path: '/', component: Index }
       ]
 
       // Start up

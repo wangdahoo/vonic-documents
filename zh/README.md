@@ -2,6 +2,12 @@
 title: 指南
 ---
 
+## <div class="code-name">VONIC</div>
+
+<div class="code-desc">
+  Mobile UI Components, based on Vue.js and ionic CSS.
+</div>
+
 ### 介绍
 
 什么是 **vonic** ？
@@ -161,3 +167,75 @@ Vue.use(Vonic.app, {
 <div class="device-ios">
   <iframe class="demo-ios" src="./demo/getting_started.html" frameborder="0"></iframe>
 </div>
+
+
+### 组件和服务
+
+<p class="tip">
+**vonic** 加载完成后，一部分组件已通过`Vue.component`方法注册为**全局组件**，以 Vue 标准组件方式进行使用；另一部分组件则注册为**全局组件服务**，调用其方法即可使用，如：`$toast`、`$dialog` 等。
+</p>
+
+下面以 MdButton、$toast 为例进行说明：
+
+```html
+<template>
+  <div class="page has-navbar" v-nav="{'title': 'Component and Service'}">
+    <div class="page-content padding padding-top">
+      <md-button class="button button-assertive button-block">
+        just a button
+      </md-button>
+
+      <md-button class="button button-balanced button-block" @click.native="onClick()">
+        show toast
+      </md-button>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    methods: {
+      onClick() {
+        $toast.show("button clicked.")
+      }
+    }
+  }
+</script>
+```
+
+<div class="device-ios">
+  <iframe class="demo-ios" src="./demo/component_and_service.html" frameborder="0"></iframe>
+</div>
+
+### 页面与路由
+
+#### 页面
+
+<p class="tip">
+**vonic** 通过 `.page`、`.page-content` 这两个基类和`v-nav`指令来定义页面及导航栏信息
+</p>
+
+```html
+<template>
+  <div class="page has-navbar" v-nav="{title: '页面标题'}">
+    <div class="page-content">
+      <!-- 页面内容 -->
+    </div>
+  </div>
+</template>
+```
+
+#### `v-nav` 指令参数列表
+
+| 参数名 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| title | 导航栏标题 | String | 否 | 无 |
+| showBackButton | 是否显示返回按钮 | Boolean | 否 | false |
+| backButtonText | 返回按钮文字（模板） | String | 否 | 见备注 |
+| onBackButtonClick | 返回按钮点击回调 | Function | 否 | 无 |
+| showMenuButton | 是否显示菜单按钮 | Boolean | 否 | false |
+| menuButtonText | 菜单按钮文字（模板） | String | 否 | 见备注 |
+| onMenuButtonClick | 菜单按钮点击回调 | Function | 否 | 无 |
+| hideNavbar | 隐藏导航栏 | Boolean | 否 | false |
+
+> `backButtonText` 默认值为 `<i class="icon ion-ios-arrow-back"></i>` <br>
+> `menuButtonText` 默认值为 `<i class="icon ion-navicon"></i>`
