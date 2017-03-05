@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Getting Started</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 定制版 ionic 样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.5/dist/ionic/css/ionic.css">
+
+    <!-- 依赖库 axios/vue/vue-router -->
+    <script src="https://unpkg.com/axios@0.15.3/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router@2.2.0/dist/vue-router.min.js"></script>
+
+    <!-- vonic 核心文件 -->
+    <script src="https://unpkg.com/vonic@2.0.0-beta.5/dist/vonic.min.js"></script>
+  </head>
+  <body>
+    <!-- mount point -->
+    <von-app></von-app>
+
+    <!-- templates -->
+    <script type="x-template" id="index">
+      <div class="page" v-tabbar="{'menus': menus, menuColor: '#B5B5B5', activeMenuColor: '#44CC00', onMenuClick: menuClicked}">
+        <router-view></router-view>
+      </div>
+    </script>
+
+    <script type="x-template" id="home">
+      <div class="page has-navbar has-tabbar" v-tabbar-menu-index="0">
+        <von-header theme="light">
+          <span slot="title">首页</span>
+        </von-header>
+        <div class="page-content padding-top">
+          <p class="text-center">Home</p>
+        </div>
+      </div>
+    </script>
+
+    <script type="x-template" id="discount">
+      <div class="page has-navbar has-tabbar" v-tabbar-menu-index="1">
+        <von-header theme="light">
+          <span slot="title">折扣</span>
+        </von-header>
+        <div class="page-content padding-top">
+          <p class="text-center">Cart</p>
+        </div>
+      </div>
+    </script>
+
+    <script type="x-template" id="cart">
+      <div class="page has-navbar has-tabbar" v-tabbar-menu-index="2">
+        <von-header theme="light">
+          <span slot="title">购物车</span>
+        </von-header>
+        <div class="page-content padding-top">
+          <p class="text-center">Cart</p>
+        </div>
+      </div>
+    </script>
+
+    <script type="x-template" id="user">
+      <div class="page has-navbar has-tabbar" v-tabbar-menu-index="3">
+        <von-header theme="light">
+          <span slot="title">我的</span>
+        </von-header>
+        <div class="page-content padding-top">
+          <p class="text-center">User</p>
+        </div>
+      </div>
+    </script>
+
+    <script>
+      var Index = {
+        template: '#index',
+        data() {
+          return {
+            menus: [
+              {
+                iconOn: 'ion-ios-home',
+                iconOff: 'ion-ios-home-outline',
+                text: '首页',
+                path: '/home'
+              },
+              {
+                iconOn: 'ion-ios-pricetags',
+                iconOff: 'ion-ios-pricetags-outline',
+                text: '折扣',
+                path: '/discount'
+              },
+              {
+                iconOn: 'ion-ios-cart',
+                iconOff: 'ion-ios-cart-outline',
+                text: '购物车',
+                path: '/cart',
+                badge: '5'
+              },
+              {
+                iconOn: 'ion-ios-person',
+                iconOff: 'ion-ios-person-outline',
+                text: '我的',
+                path: '/user'
+              }
+            ]
+          }
+        },
+
+        methods: {
+          menuClicked(menuIndex) {
+            console.log(menuIndex)
+          }
+        },
+
+        beforeDestroy() {
+          $tabbar.$emit('hideTabbar')
+        }
+      }
+
+      var Home = { template: '#home' }
+      var Discount = { template: '#discount' }
+      var Cart = { template: '#cart' }
+      var User = { template: '#user' }
+
+      // Routes
+      var routes = [
+        { 
+          path: '/', 
+          component: Index,
+          children: [
+            { path: 'home', component: Home },
+            { path: 'discount', component: Discount },
+            { path: 'cart', component: Cart },
+            { path: 'user', component: User }
+          ]
+        }
+      ]
+
+      // Start up
+      Vue.use(Vonic.app, {
+        routes: routes
+      })
+    </script>
+  </body>
+</html>
