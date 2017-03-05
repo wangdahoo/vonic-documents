@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Getting Started</title>
+    <title>vonic examples</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 定制版 ionic 样式 -->
@@ -451,6 +451,8 @@
               <button class="button button-assertive button-block" @click="next()">next</button>
             </div>
           </div>
+
+          <p class="padding">请在手机中查看该 demo</p>
         </div>
       </div>
     </script>
@@ -483,7 +485,7 @@
     <script type="text/x-template" id="accordion">
       <div class="page has-navbar page-accordion" v-nav="{title: '手风琴组件'}">
         <div class="page-content padding-top">
-          <accordion default-index="0">
+          <accordion>
             <accordion-item title="农夫" content-height="110">
               <p>
                 如果有一天我能够拥有一个大果园，
