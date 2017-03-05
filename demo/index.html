@@ -21,7 +21,7 @@
 
     <!-- templates -->
 
-    <!-- MdButton -->
+    <!-- 组件 -->
     <script type="text/x-template" id="md-button">
       <div class="page has-navbar" v-nav="{title: 'Material Design Button'}">
         <div class="page-content padding padding-top">
@@ -92,7 +92,6 @@
       </div>
     </script>
 
-    <!-- VonInput -->
     <script type="text/x-template" id="von-input">
       <div class="page" v-nav="{title: '输入框'}">
         <div class="page-content padding-top">
@@ -524,6 +523,94 @@
       </div>
     </script>
 
+    <!-- 服务 -->
+    <script type="text/x-template" id="toast-and-loading">
+      <div class="page has-navbar" v-nav="{title: '提示'}">
+        <div class="page-content padding-top">
+          <list class="list-ios hl-list-borderless">
+            <item class="item-icon-right" @click.native="toast()">
+              Toast <span class="item-note">文字提示</span>
+              <i class="icon ion-ios-arrow-right"></i>
+            </item>
+            <item class="item-icon-right" @click.native="loading('正在加载..')">
+              Loading <span class="item-note">加载提示</span>
+              <i class="icon ion-ios-arrow-right"></i>
+            </item>
+          </list>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="dialog">
+      <div class="page has-navbar" v-nav="{title: '对话框'}">
+        <div class="page-content padding-top">
+          <item class="item-icon-right" @click.native="showAlert()">
+            Alert <span class="item-note">提示框</span>
+            <i class="icon ion-ios-arrow-right"></i>
+          </item>
+          <item class="item-icon-right" @click.native="showConfirm()">
+            Confirm <span class="item-note">确认框</span>
+            <i class="icon ion-ios-arrow-right"></i>
+          </item>
+          <item class="item-icon-right" @click.native="showAlertIOS()">
+            iOS Alert <span class="item-note">iOS 风格提示框</span>
+            <i class="icon ion-ios-arrow-right"></i>
+          </item>
+          <item class="item-icon-right" @click.native="showConfirmIOS()">
+            iOS Confirm <span class="item-note">iOS 风格确认框</span>
+            <i class="icon ion-ios-arrow-right"></i>
+          </item>
+          <item class="item-icon-right" @click.native="multiMode()">
+            Multi Mode <span class="item-note">多个同时出现</span>
+            <i class="icon ion-ios-arrow-right"></i>
+          </item>
+
+          <item class="item-icon-right" @click.native="showAlert('scale')">
+            Scale Effect
+            <i class="icon ion-ios-arrow-right"></i>
+          </item>
+          <item class="item-icon-right" @click.native="showAlert('slide')">
+            Slide Effect
+            <i class="icon ion-ios-arrow-right"></i>
+          </item>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="popup">
+      <div class="page has-navbar" v-nav="{title: '弹层'}">
+        <div class="page-content padding-top">
+          <item class="item item-icon-right" @click.native="showCustomPopup()">
+            Custom Popup
+            <i class="icon ion-ios-arrow-right"></i>
+          </item>
+          <item class="item item-icon-right" @click.native="showCustomPopup2()">
+            Custom Popup 2
+            <i class="icon ion-ios-arrow-right"></i>
+          </item>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="actionsheet">  
+      <div class="page has-navbar" v-nav="{title: '操作列表'}">
+        <div class="page-content padding-top">
+          <item @click.native="showActionSheet()">
+            iOS
+            <span class="item-note">默认</span>
+          </item>
+
+          <item @click.native="showActionSheet('android')">
+            Android
+          </item>
+
+          <item @click.native="showActionSheet('weixin')">
+            微信
+          </item>
+        </div>
+      </div>
+    </script>
+    
     <script src="index.js"></script>
   </body>
 </html>

@@ -85,3 +85,7 @@
   line-height: 22px;
   text-align: justify;
 }
+
+.page.has-tabbar {
+  margin-bottom: 44px;
+}

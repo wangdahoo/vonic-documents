@@ -470,6 +470,153 @@ var Datepicker = {
   }
 }
 
+var ToastAndLoading = {
+  template: '#toast-and-loading',
+  methods: {
+    loading(tips) {
+      $loading.show(tips)
+
+      setTimeout(() => {
+        $loading.hide()
+      }, 2000)
+    },
+
+    toast() {
+      $toast.show('发送成功', 1500).then(() => {
+        console.log('toast hide')
+      })
+    }
+  }
+}
+
+var Dialog = {
+  template: '#dialog',
+
+  methods: {
+    showAlert(effect) {
+      $dialog.alert({
+        content: 'Hello!',
+        okTheme: 'positive',
+        effect: effect || 'default'
+      }).then(() => {
+        console.log('alert hide.')
+      })
+    },
+
+    showConfirm() {
+      $dialog.confirm({
+        content: '在"微信"中打开链接吗?',
+        okText: '打开'
+      }).then((res) => {
+        console.log('confirm result: ', res)
+      })
+    },
+
+    showAlertIOS() {
+      $dialog.alert({
+        theme: 'ios',
+        title: '无法打开网页',
+        content: 'Safari打不开网页，因为网址无效。',
+        okText: '好'
+      }).then(() => {
+        console.log('alert hide.')
+      })
+    },
+
+    showConfirmIOS() {
+      $dialog.confirm({
+        theme: 'ios',
+        title: '在"微信"中打开链接吗?',
+        cancelText: '取消',
+        okText: '打开'
+      }).then((res) => {
+        console.log('confirm result: ', res)
+      })
+    },
+
+    multiMode() {
+      let options = {
+        theme: 'ios',
+        title: '测试',
+        okText: '好'
+      }
+
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          options.content = `第${i+1}条消息`
+          $dialog.alert(options)
+        }, 500 * i)
+      }
+    }
+  }
+}
+
+var Popup = {
+  template: '#popup',
+
+  methods: {
+    showCustomPopup() {
+      let options = {
+        effect: 'scale',
+        title: '',
+        buttons: [
+          {text: '确定'},
+          {text: '取消'},
+        ]
+      }
+
+      let popup = $popup.fromTemplate('<p style="margin-bottom: 0; text-align: center;">自定义内容</p>', options)
+
+      popup.show().then((buttonIndex) => {
+        console.log(buttonIndex)
+      })
+    },
+
+    showCustomPopup2() {
+      let options = {
+        effect: 'scale',
+        title: '',
+        buttons: [
+          {text: '确定', theme: 'assertive'}
+        ],
+        showClose: true
+      }
+
+      let template = `
+        <p style="margin-bottom: 10px; text-align: center; font-size: 16px;">带有关闭按钮</p>
+        <p style="margin-bottom: 0; text-align: center;">自定义内容</p>
+      `
+
+      let popup = $popup.fromTemplate(template, options)
+
+      popup.show().then((buttonIndex) => {
+        console.log(buttonIndex)
+      })
+    }
+  }
+}
+
+var ActionSheet = {
+  template: '#actionsheet',
+  methods: {
+    showActionSheet(theme) {
+      $actionSheet.show({
+        theme: theme || '',
+        title: '标题',
+        buttons: {
+          'Action - 1': () => {
+            console.log('action 1 called.')
+          },
+
+          'Action - 2': () => {
+            console.log('action 2 called.')
+          }
+        }
+      })
+    }
+  }
+}
+
 var routes = [
   { path: '/MdButton', component: MdButton },
   { path: '/VonInput', component: VonInput },
@@ -490,6 +637,10 @@ var routes = [
   { path: '/Cascade', component: Cascade },
   { path: '/Accordion', component: Accordion },
   { path: '/Datepicker', component: Datepicker },
+  { path: '/ToastAndLoading', component: ToastAndLoading },
+  { path: '/Dialog', component: Dialog },
+  { path: '/Popup', component: Popup },
+  { path: '/ActionSheet', component: ActionSheet }
 ]
 
 Vue.use(Vonic.app, {
