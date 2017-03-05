@@ -785,3 +785,112 @@ bgColor、tabColor 值均以 vonic 情景色表示。
 > [演示](https://wangdahoo.github.io/vonic-documents/demo/#/Datepicker)
 
 ----------
+
+### 服务
+
+#### $toast
+
+##### 用法
+
+```js
+/* 显示一个文字提示，3秒后关闭 */
+$toast.show('这是一个提示', 3000).then(() => {
+  console.log('toast hide')
+})
+
+/* 显示一个文字提示，稍后手动关闭 */
+$toast.show('连接中..', 1E10)
+
+/* 手动关闭 */
+$toast.hide()
+
+/* 显示一个加载提示，稍后手动关闭 */
+$loading.show('拼命加载中..')
+
+setTimeout(() => {
+  $loading.hide()
+}, 2000)
+```
+
+> [演示](https://wangdahoo.github.io/vonic-documents/demo/#/ToastAndLoading)
+
+----------
+
+#### $dialog
+
+##### 用法
+
+```js
+/* Alert 警告框 */
+$dialog.alert({
+  // 效果
+  effect: 'default',
+  // 标题
+  title: '提示', 
+  // 内容
+  content: '这是一个警告框',
+  // 按钮文本
+  okText: '确定',
+  // 按钮主题
+  okTheme: 'assertive'
+})
+
+/* Confirm 确认框 */
+$dialog.confirm({
+  // 设置为ios样式
+  theme: 'ios',
+  // 标题
+  title: '在"微信"中打开链接吗?',
+  // 取消按钮文本
+  cancelText: '取消',
+  // 确定按钮文本
+  okText: '打开'
+}).then((res) => {
+  console.log('confirm result: ', res)
+})
+```
+
+[更多用例](https://github.com/wangdahoo/vonic/blob/master/demo/components/Dialog.vue)
+
+##### 方法
+
+###### Promise alert(options: Object)
+
+options 参数
+
+| 字段名 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| effect | 效果 default、scale、slide | String | 否 | default |
+| title | 标题 | String | 否 | 提示 |
+| content | 内容 | String | 否 | 无 |
+| okText | 按钮文本 | String | 否 | 确定 |
+| okTheme | 按钮主题 | String | 否 | assertive |
+| theme | 主题样式 default、ios | String | 否 | default |
+
+<p class="warning">
+当 theme 值为 ios 时，其他主题相关的参数（okTheme, cancelTheme，effect等）将不再起作用。
+</p>
+
+###### Promise confirm(options: Object)
+
+options 参数
+
+| 字段名 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| effect | 效果 default/scale/slide | String | 否 | default |
+| title | 标题 | String | 否 | 提示 |
+| content | 内容 | String | 否 | 无 |
+| okText | 确定按钮文本 | String | 否 | 确定 |
+| okTheme | 确定按钮主题 | String | 否 | assertive |
+| cancelText | 取消按钮文本 | String | 否 | 确定 |
+| cancelTheme | 取消按钮主题 | String | 否 | default |
+| theme | 主题样式 default、ios | String | 否 | default |
+
+<p class="warning">
+当 theme 值为 ios 时，其他主题相关的参数（okTheme, cancelTheme，effect等）将不再起作用。
+</p>
+
+> [演示](https://wangdahoo.github.io/vonic-documents/demo/#/Dialog)
+
+----------
+

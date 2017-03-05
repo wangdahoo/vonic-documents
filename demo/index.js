@@ -485,6 +485,12 @@ var ToastAndLoading = {
       $toast.show('发送成功', 1500).then(() => {
         console.log('toast hide')
       })
+
+      // $toast.show('发送成功', 3600*1000)
+
+      // setTimeout(function () {
+      //   $toast.hide()
+      // }, 5000)
     }
   }
 }

@@ -12,5 +12,5 @@ self.$config = {
     smartypants: true
   },
 
-  tocVisibleDepth: 3
+  tocVisibleDepth: 4
 }
