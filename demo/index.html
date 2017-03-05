@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 定制版 ionic 样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.5/dist/ionic/css/ionic.css">
+    <link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.6/dist/ionic/css/ionic.css">
     <!-- 依赖库 axios/vue/vue-router -->
     <script src="https://unpkg.com/axios@0.15.3/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>
     <script src="https://unpkg.com/vue-router@2.2.0/dist/vue-router.min.js"></script>
     <!-- vonic 核心文件 -->
-    <script src="https://unpkg.com/vonic@2.0.0-beta.5/dist/vonic.min.js"></script>
+    <script src="https://unpkg.com/vonic@2.0.0-beta.6/dist/vonic.min.js"></script>
 
 
     <link rel="stylesheet" href="index.css">
@@ -95,7 +95,6 @@
     <script type="text/x-template" id="von-input">
       <div class="page" v-nav="{title: '输入框'}">
         <div class="page-content padding-top">
-
           <!-- type: text, password, email, tel -->
           <div class="item item-divider">
             有标签: {{ username }}
@@ -107,7 +106,6 @@
             无标签: {{ username2 }}
           </div>
           <von-input type="text" v-model="username2" placeholder="用户名/手机/邮箱"></von-input>
-
         </div>
       </div>
     </script>

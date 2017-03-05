@@ -87,7 +87,7 @@ font-family: '-apple-system', "Helvetica Neue", "Roboto", "Segoe UI", sans-serif
 
 ```html
 <!-- 定制版 ionic 样式 -->
-<link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.5/dist/ionic/css/ionic.css">
+<link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.6/dist/ionic/css/ionic.css">
 
 <!-- 依赖库 axios/vue/vue-router -->
 <script src="https://unpkg.com/axios@0.15.3/dist/axios.min.js"></script>
@@ -95,11 +95,11 @@ font-family: '-apple-system', "Helvetica Neue", "Roboto", "Segoe UI", sans-serif
 <script src="https://unpkg.com/vue-router@2.2.0/dist/vue-router.min.js"></script>
 
 <!-- vonic 核心文件 -->
-<script src="https://unpkg.com/vonic@2.0.0-beta.5/dist/vonic.min.js"></script>
+<script src="https://unpkg.com/vonic@2.0.0-beta.6/dist/vonic.min.js"></script>
 ```
 
 <p class="danger">
-  **vonic** 当前最新版本为 **2.0.0-beta.5**
+  **vonic** 当前最新版本为 **2.0.0-beta.6**
 </p>
 
 <hr/>
