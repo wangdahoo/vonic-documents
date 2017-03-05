@@ -18,6 +18,8 @@ title: 指南
   和 ionic 的关系：没有关系，只是在样式方面以 ionic 的 css 文件为基础（做了一些调整）
 </p>
 
+<hr/>
+
 ### 基础规范
 
 #### 字体
@@ -68,15 +70,19 @@ font-family: '-apple-system', "Helvetica Neue", "Roboto", "Segoe UI", sans-serif
 
 既然 **vonic** 是以 ionic 样式为基础的，那它当然也包含 [ionicons](http://ionicons.com/) 图标集。
 
+<hr/>
+
 ### 准备
 
 #### 依赖
+
 **vonic** 依赖以下几个库，在创建 **vonic** 项目之前，请确保引入它们。
  - vue.js
  - vue-router.js
  - axios.js (**vue.js** 官方推荐的 ajax 方案)
 
 #### CDN
+
 通过 [unpkg/vonic](https://unpkg.com/vonic) 你可以快速获取最新的相关资源文件（含 **vonic** 定制版 ionic 样式资源文件）。
 
 ```html
@@ -95,6 +101,8 @@ font-family: '-apple-system', "Helvetica Neue", "Roboto", "Segoe UI", sans-serif
 <p class="danger">
   **vonic** 当前最新版本为 **2.0.0-beta.5**
 </p>
+
+<hr/>
 
 ### Hello Vonic
 
@@ -168,12 +176,13 @@ Vue.use(Vonic.app, {
   <iframe class="demo-ios" src="./demo/getting_started.html" frameborder="0"></iframe>
 </div>
 
+<hr/>
 
 ### 组件和服务
 
-<p class="tip">
+#### 概述
+
 **vonic** 加载完成后，一部分组件已通过`Vue.component`方法注册为**全局组件**，以 Vue 标准组件方式进行使用；另一部分组件则注册为**全局组件服务**，调用其方法即可使用，如：`$toast`、`$dialog` 等。
-</p>
 
 下面以 MdButton、$toast 为例进行说明：
 
@@ -206,13 +215,64 @@ Vue.use(Vonic.app, {
   <iframe class="demo-ios" src="./demo/component_and_service.html" frameborder="0"></iframe>
 </div>
 
+#### **vonic** 组件
+
+| 组件名称 | 组件标签 | 描述 |
+|-----|-----|-----|
+| MdButton | `<md-button>` |Material Design 风格按钮 | 
+| VonInput | `<von-input>` | 输入框 | 
+| Search | `<search>` | 搜索框 | 
+| VonRadio | `<von-radio>` | 单选框 |
+| VonCheckbox | `<von-checkbox>` | 复选框 |
+| VonToggle | `<von-toggle>` | 开关按钮 |
+| VonRange | `<von-range>` |滑块 |
+| VonHeader | `<von-header>` | 页头 |
+| VonBadge | `<badge>` | 徽章 |
+| List | `<list>` | 列表 |
+| Item | `<item>` | 列表选项 |
+| Cells | `<cells>` | 宫格 |
+| Tabs | `<tabs>` | 选项卡 |
+| ButtonBar | `<button-bar>` | 按钮栏 |
+| Scalable | `<scalable>` | 缩放 |
+| Swiper | `<swiper>` | 轮播容器 |
+| SwiperItem | `<swiper-item>` | 轮播项 |
+| Scroll | `<scroll>` | 滚动容器 |
+| Scroller | `<scroller>` | 基于 vue-scroller 插件的滚动容器 |
+| Cascade | `<cascade>` | 级联 |
+| Accordion | `<accordion>` | 手风琴容器 |
+| AccordionItem | `<accordion-item>` | 手风琴内容项 |
+| Datepicker | `<datepicker>` | 日期选择器 |
+
+
+#### **vonic** 服务
+
+| 服务名称（全局变量） | 描述 |
+|-----|-----|
+| `$toast` | 文字提示 | 
+| `$loading` | 加载提示 | 
+| `$dialog` | 对话框 | 
+| `$popup` | 弹层 | 
+| `$actionSheet` | 操作列表 | 
+| `$tabbar` | 选项栏 | 
+| `$sidebar` | 侧边栏 | 
+| `$modal` | 模态窗 | 
+| `$storage` | 本地存储 |
+
+#### **vonic** 指令
+
+| 指令 | 描述 |
+|-----|-----|
+| `v-nav` | 导航栏指令 | 
+| `v-tabbar` | 选择栏指令 | 
+| `v-tabbar-menu-index` | 选择栏默认菜单指令 |
+
+<hr/>
+
 ### 页面与路由
 
 #### 页面
 
-<p class="tip">
 **vonic** 通过 `.page`、`.page-content` 这两个基类和`v-nav`指令来定义页面及导航栏信息
-</p>
 
 ```html
 <template>
@@ -239,3 +299,23 @@ Vue.use(Vonic.app, {
 
 > `backButtonText` 默认值为 `<i class="icon ion-ios-arrow-back"></i>` <br>
 > `menuButtonText` 默认值为 `<i class="icon ion-navicon"></i>`
+
+
+#### 路由
+
+**vonic** 加载完成后，即注册 VueRouter 实例为 `$router` 服务
+
+<p class="tip">
+`$router.forward()` 和 `$router.back()` 两个方法默认通过调用 VueRouter 实例的 push 方法来进行路由切换，但在调用 push 方法前会预先定义页面切换方向。
+</p>
+
+```js
+/* 启动应用前，设置 Vonic.app 的 pushMethod 选项为 replace 可以全局禁用浏览器 history */
+/* 即，$router.forward()、$router.back() 不再新增浏览记录 */
+
+Vonic.app.setConfig('pushMethod', 'replace')
+
+Vue.use(Vonic.app, {
+  routes: routes
+})
+```

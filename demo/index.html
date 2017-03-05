@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Getting Started</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 定制版 ionic 样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.5/dist/ionic/css/ionic.css">
+    <!-- 依赖库 axios/vue/vue-router -->
+    <script src="https://unpkg.com/axios@0.15.3/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router@2.2.0/dist/vue-router.min.js"></script>
+    <!-- vonic 核心文件 -->
+    <script src="https://unpkg.com/vonic@2.0.0-beta.5/dist/vonic.min.js"></script>
+
+
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <von-app></von-app>
+
+    <!-- templates -->
+
+    <!-- MdButton -->
+    <script type="text/x-template" id="md-button">
+      <div class="page has-navbar" v-nav="{title: 'Material Design Button'}">
+        <div class="page-content padding padding-top">
+          <md-button class="button button-assertive button-block" @click.native="onButtonClicked()">
+            Assertive
+          </md-button>
+
+          <md-button class="button button-positive button-block">
+            Positive
+          </md-button>
+
+          <md-button class="button button-balanced button-block">
+            Balanced
+          </md-button>
+
+          <md-button class="button button-energized">
+            Energized
+          </md-button>
+
+          <md-button class="button button-calm">
+            Calm
+          </md-button>
+
+          <md-button class="button button-royal">
+            Royal
+          </md-button>
+
+          <md-button class="button button-dark">
+            Dark
+          </md-button>
+
+          <div style="height: 30px;"></div>
+
+          <md-button class="button button-balanced button-fab">
+            <i class="icon ion-checkmark"></i>
+          </md-button>
+
+          <md-button class="button button-assertive button-fab">
+            <i class="icon ion-close"></i>
+          </md-button>
+
+          <div style="height: 30px;"></div>
+
+          <md-button class="button button-light button-fab">
+            <i class="icon ion-android-arrow-up"></i>
+          </md-button>
+
+          <md-button class="button button-light button-fab">
+            <i class="icon ion-android-arrow-down"></i>
+          </md-button>
+
+          <md-button class="button button-positive button-fab">
+            <i class="icon ion-android-arrow-forward"></i>
+          </md-button>
+
+          <md-button class="button button-positive button-fab">
+            <i class="icon ion-android-arrow-back"></i>
+          </md-button>
+
+          <md-button class="button button-energized button-fab">
+            <i class="icon ion-home"></i>
+          </md-button>
+
+          <md-button class="button button-calm button-fab">
+            <i class="icon ion-android-share"></i>
+          </md-button>
+        </div>
+      </div>
+    </script>
+
+    <!-- VonInput -->
+    <script type="text/x-template" id="von-input">
+      <div class="page" v-nav="{title: '输入框'}">
+        <div class="page-content padding-top">
+
+          <!-- type: text, password, email, tel -->
+          <div class="item item-divider">
+            有标签: {{ username }}
+          </div>
+          <von-input type="text" v-model="username" placeholder="用户名/手机/邮箱" label="用户名"></von-input>
+          <von-input type="password" v-model="password" placeholder="密码" label="密码" style="margin-bottom: 5px;"></von-input>
+
+          <div class="item item-divider">
+            无标签: {{ username2 }}
+          </div>
+          <von-input type="text" v-model="username2" placeholder="用户名/手机/邮箱"></von-input>
+
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="search">
+      <div class="page has-navbar" v-nav="{title: '搜索框'}">
+        <div class="page-content">
+          <search v-model="keywords" placeholder="输入关键字" :on-search="onSearch" :on-cancel="onCancel"></search>
+
+          <div class="item" v-show="searching">
+            searching for '{{keywords}}'.
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="von-radio">
+      <div class="page has-navbar" v-nav="{title: '单选框'}">
+        <div class="page-content">
+          <div class="item item-divider">
+            选择性别:
+          </div>
+
+          <von-radio :options="genderOptions" v-model="gender"></von-radio>
+
+          <p class="padding">
+            option index: {{ gender }}<br>
+            option text: {{ genderOptions[gender] }}
+          </p>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="von-checkbox">
+      <div class="page has-navbar" v-nav="{title: '复选框'}">
+        <div class="page-content">
+          <div class="item item-divider">
+            选择感兴趣的板块:
+          </div>
+
+          <von-checkbox :options="topics" v-model="chosenTopics" theme="positive"></von-checkbox>
+
+          <p class="padding">
+            chosen topics: {{ chosenTopics }}
+          </p>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="von-toggle">
+      <div class="page has-navbar" v-nav="{title: '开关按钮'}">
+        <div class="page-content padding-top">
+          <von-toggle :text="toggleText" v-model="pushNotification"></von-toggle>
+          <div class="item item-divider">开关状态: <span>{{ pushNotification ? '开启' : '关闭' }}</span></div>
+
+          <div class="padding">
+            <div class="button button-positive button-block" @click="triggerToggle()">手动切换</div>
+          </div>
+
+          <div class="item item-divider">其他主题色</div>
+          <von-toggle text="assertive" theme="assertive" v-model="values[0]"></von-toggle>
+          <von-toggle text="positive" theme="positive" v-model="values[1]"></von-toggle>
+          <von-toggle text="energized" theme="energized" v-model="values[2]"></von-toggle>
+          <von-toggle text="calm" theme="calm" v-model="values[3]"></von-toggle>
+          <von-toggle text="dark" theme="dark" v-model="values[4]"></von-toggle>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="von-range">
+      <div class="page has-navbar" v-nav="{title: '滑块'}">
+        <div class="page-content padding-top">
+          <von-range
+            v-model="volume"
+            :min="min"
+            :max="max"
+          ></von-range>
+
+          <div class="padding">
+            value: {{ volume }}
+          </div>
+
+          <von-range
+            v-model="volume2"
+            :min="min"
+            :max="max"
+            theme="balanced"
+          >
+            <i class="icon ion-volume-low" slot="text-left"></i>
+            <i class="icon ion-volume-high" slot="text-right"></i>
+          </von-range>
+
+          <div class="padding">
+            volume: {{ volume2 }}
+          </div>
+
+          <div class="padding">
+            Note: Theming capabilities are not available in Chrome due to this <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=582301">issues</a>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="von-header">
+      <div class="page has-navbar" v-nav="{hideNavbar: true}">
+        <div class="page-content">
+          <von-header :theme="themes[themeIndex]">
+            <button class="button button-icon ion-ios-arrow-back" slot="left"></button>
+            <span slot="title">标题文字</span>
+            <button class="button button-icon ion-navicon" slot="right"></button>
+          </von-header>
+
+          <div style="height: 20px;"></div>
+
+          <von-radio :options="themes" v-model="themeIndex"></von-radio>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="badge">
+      <div class="page has-navbar has-tabbar" v-nav="{title: '徽章'}">
+        <div class="page-content">
+          <div class="padding">
+            <badge num="2"></badge>
+            <badge num="35"></badge>
+            <badge num="99<sup>+</sup>"></badge>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="list">
+      <div class="page has-navbar" v-nav="{title: '列表'}">
+        <div class="page-content" style="padding-top: 54px;">
+          <div class="item item-divider">
+            Thin Border
+          </div>
+
+          <item>
+            normal
+          </item>
+          <item class="item-icon-left">
+            icon left
+            <i class="icon ion-social-github dark"></i>
+          </item>
+          <item class="item-icon-right">
+            icon right
+            <i class="icon ion-ios-arrow-right" style="color: #DDD;"></i>
+          </item>
+          <item class="item-icon-right">
+            Item Title
+            <span class="item-note">item note</span>
+            <i class="icon ion-ios-arrow-right" style="color: #DDD;"></i>
+          </item>
+
+          <div class="item item-divider">
+            iOS style
+          </div>
+
+          <list class="list-ios">
+            <item>
+              Item - 1
+            </item>
+            <item>
+              Item - 2
+            </item>
+            <item>
+              Item - 3
+            </item>
+          </list>
+
+          <list class="list-ios hl-list-borderless">
+            <item>
+              Item - 1
+            </item>
+            <item>
+              Item - 2
+            </item>
+            <item>
+              Item - 3
+            </item>
+          </list>
+
+          <list>
+            <item thin>
+              小标题
+            </item>
+            <item>
+              正文
+              <span class="item-note">
+                备注
+              </span>
+            </item>
+          </list>
+
+          <hl-item class="item-icon-right">
+            文字
+            <div class="item-note">
+              备注
+            </div>
+            <span class="icon ion-ios-arrow-right"></span>
+          </hl-item>
+
+          <div style="height: 100px"></div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="cells">
+      <div class="page has-navbar" v-nav="{title: '宫格'}">
+        <div class="page-content page-cells">
+          <!-- 3 x 2 -->
+          <cells :items="entrances" :on-cell-click="onCellClick" row="2"></cells>
+
+          <!-- 3 x 3 -->
+          <cells class="cells-33" :items="getItems(9)" :on-cell-click="onCellClick"></cells>
+
+          <!-- 4 x 3 -->
+          <cells class="cells-44" :items="getItems(16)" :on-cell-click="onCellClick" row="4" col="4"></cells>
+
+          <!-- no outer border -->
+          <div class="padding">
+            无外边框：
+          </div>
+          <cells outer-border="false" class="cells-22" :items="getItems(3)" :on-cell-click="onCellClick" row="2" col="2"></cells>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="tabs">
+      <div class="page has-navbar" v-nav="{title: '选项卡'}">
+        <tabs :tab-items="tabs" :tab-index="tabIndex" :on-tab-click="onTabClick"></tabs>
+
+        <div class="page-content">
+          <p>
+            Active Tab Index: {{ tabIndex }}
+          </p>
+
+          <p>
+            active category index: {{ categories[categoryIndex] }}
+          </p>
+        </div>
+
+        <tabs :tab-items="categories"
+              :tab-index="categoryIndex"
+              position="bottom"
+              bg-color="assertive"
+              tab-color="light"
+              :on-tab-click="onCategoryClick"
+        ></tabs>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="button-bar">
+      <div class="page has-navbar" v-nav="{title: '按钮栏'}">
+        <div class="page-content padding-top">
+          <div class="padding light-bg">
+            <button-bar theme="assertive" :tab-items="tabs" :tab-index="tab_0"
+              :on-tab-click="index => tab_0 = index"></button-bar>
+
+            <button-bar theme="positive" :tab-items="tabs" :tab-index="tab_1"
+              :on-tab-click="index => tab_1 = index"></button-bar>
+
+            <button-bar theme="balanced" :tab-items="tabs" :tab-index="tab_2"
+              :on-tab-click="index => tab_2 = index"></button-bar>
+
+            <button-bar theme="energized" :tab-items="tabs" :tab-index="tab_3"
+              :on-tab-click="index => tab_3 = index"></button-bar>
+
+            <button-bar theme="calm" :tab-items="tabs" :tab-index="tab_4"
+              :on-tab-click="index => tab_4 = index"></button-bar>
+
+            <button-bar theme="royal" :tab-items="tabs" :tab-index="tab_5"
+              :on-tab-click="index => tab_5 = index"></button-bar>
+
+            <button-bar theme="dark" :tab-items="tabs" :tab-index="tab_6"
+              :on-tab-click="index => tab_6 = index"></button-bar>
+          </div>
+
+          <div class="item item-divider">
+            商品分类:
+          </div>
+          <div class="padding light-bg">
+            <button-bar theme="assertive" :tab-items="promotions" :tab-index="promotionIndex"
+              :on-tab-click="index => promotionIndex = index"></button-bar>
+          </div>
+          <div class="item item-borderless">
+            选中: {{ promotions[promotionIndex] }}
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="scalable">
+      <div class="page has-navbar page-scalable" v-nav="{title: '缩放'}">
+        <div class="page-content">
+          <scalable width="100%" height="100" style="background-color: #FFF;">
+            <p>
+              Font Size = 16px (相当于8px)
+            </p>
+          </scalable>
+
+          <div class="item item-divider">
+            带特小字体的标签：
+          </div>
+
+          <scalable width="100%" height="30">
+            <div class="tags">
+              <div class="tag">免费</div>
+              <div class="tag tag-assertive">
+                剩余<span class="num">1000</span>份
+              </div>
+            </div>
+          </scalable>
+        </div>
+      </div>
+    </script>
+
+
+    <script type="text/x-template" id="swiper">
+      <div class="page has-navbar" v-nav="{title: '轮播'}">
+        <div class="page-content page-swiper">
+          <swiper ref="swiper" direction="horizontal" width="100%" height="150" pager-color="#ea5a49" pager-bg-color="#e5e4e3">
+            <swiper-item>
+              <h1 style="color: #0a9dc7;" @click="onClick()">Item 1</h1>
+            </swiper-item>
+
+            <swiper-item>
+              <h1 style="color: #44cc00;">Item 2</h1>
+            </swiper-item>
+
+            <swiper-item>
+              <h1 style="color: #ffc900;">Item 3</h1>
+            </swiper-item>
+          </swiper>
+
+          <div class="row">
+            <div class="col col-50">
+              <button class="button button-assertive button-block" @click="prev()">prev</button>
+            </div>
+
+            <div class="col col-50">
+              <button class="button button-assertive button-block" @click="next()">next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="scroll">
+      <div class="page has-navbar" v-nav="{title: '滚动'}">
+        <scroll class="page-content"
+                :on-refresh="onRefresh"
+                :on-infinite="onInfinite">
+          <item v-for="(item, index) in items" @click.native="onItemClick(index)" :class="{'item-stable': index % 2 == 0}">
+            {{ item }}
+          </item>
+
+          <div v-if="infiniteCount >= 2" slot="infinite" class="text-center">没有更多数据</div>
+        </scroll>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="cascade">
+      <div class="page has-navbar" v-nav="{title: '级联'}">
+        <div class="page-content padding-top">
+          <div class="item item-divider">
+            选择您所属的行政区划：
+          </div>
+          <cascade :fields="fields" :data="cities" :value="value" :on-change="onChange"></cascade>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="accordion">
+      <div class="page has-navbar page-accordion" v-nav="{title: '手风琴组件'}">
+        <div class="page-content padding-top">
+          <accordion default-index="0">
+            <accordion-item title="农夫" content-height="110">
+              <p>
+                如果有一天我能够拥有一个大果园，
+                我愿放下所有追求做个农夫去种田，
+                每一个早晨我耕耘在绿野田园，
+                每一个黄昏我守望在乡间的麦田。
+                我会把忧虑都融化在夕阳里，
+                让孤独的心等待秋收的欢喜。
+              </p>
+            </accordion-item>
+            <accordion-item title="渔夫" content-height="110">
+              <p>
+                如果有一天我能够拥有一条渔船，
+                我愿放下所有执着做个渔夫住在海边，
+                每一个早晨我航行在晨曦的海面，
+                每一个黄昏我遥望在无际的海云间。
+                我会把思绪都消失在波涛里，
+                让澎湃的心等待风雨后的平息。
+              </p>
+            </accordion-item>
+          </accordion>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="datepicker">
+      <div class="page has-navbar" v-nav="{title: '日期选择器'}">
+        <div class="page-content padding-top">
+          <datepicker v-model="birthday" label="生日" date-format="yyyy-mm-dd"></datepicker>
+
+          <div class="padding">
+            生日: {{ birthday }}
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script src="index.js"></script>
+  </body>
+</html>

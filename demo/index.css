@@ -1,0 +1,87 @@
+*::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* cells */
+
+.page-cells .entrance {
+  height: 120px;
+  padding: 35px 0;
+}
+
+.page-cells .entrance > .icon {
+  font-size: 30px;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 6px;
+}
+
+.page-cells .entrance > span {
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.page-cells .cells.cells-44 > .row > .col {
+  padding: 30px 0;
+}
+
+.page-cells .cells-33 > .row > .col {
+  padding: 50px 0;
+}
+
+.page-cells .cells-22 > .row > .col {
+  padding: 30px 0;
+}
+
+/* scalable */
+
+.page-scalable p {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.page-scalable .tags {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: 12px;
+}
+
+.page-scalable .tags .tag {
+  font-size: 18px;
+  line-height: 32px;
+  border-radius: 4px;
+  padding: 2px 8px;
+  border: 1px solid #B5B5B5;
+  color: #B5B5B5;
+  width: auto;
+  float: left;
+  margin-right: 10px;
+}
+
+.page-scalable .tags .tag.tag-assertive {
+  color: #EA5A49;
+  border: 1px solid #EA5A49;
+}
+
+.page-swiper .swiper-item {
+  padding-top: 50px;
+  background-color: #FFF;
+}
+
+.page-swiper .swiper-item h1 {
+  color: #fff;
+  font-size: 32px;
+  line-height: 50px;
+  text-align: center;
+  font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+
+.page-accordion p {
+  padding: 10px 15px 10px 0;
+  font-size: 12px;
+  line-height: 22px;
+  text-align: justify;
+}
