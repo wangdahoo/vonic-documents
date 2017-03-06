@@ -1,3 +1,7 @@
+.markdown-body > h2 {
+  border-bottom: none;
+}
+
 .code-name {
   font-family: "Monoton", sans-serif;
   font-size: 60px;
