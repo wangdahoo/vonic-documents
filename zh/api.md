@@ -553,9 +553,9 @@ bgColor、tabColor 值均以 vonic 情景色表示。
 
 ##### 方法
 
-- void go(index: Integer) 滑动到指定页
-- void next() 下一页
-- void prev() 上一页
+- go(index: Integer) 滑动到指定页
+- next() 下一页
+- prev() 上一页
 
 > [演示](https://wangdahoo.github.io/vonic-documents/demo/#/Swiper)
 
@@ -788,7 +788,7 @@ bgColor、tabColor 值均以 vonic 情景色表示。
 
 ### 服务
 
-#### $toast
+#### $toast、$loading
 
 ##### 用法
 
@@ -967,15 +967,54 @@ options 参数
 
 ##### Popup 实例方法
 
-###### Promise show() 
+###### show() 
 
-显示弹层
+显示弹层，返回一个在点击关闭后resolve 的 Promise
 
-###### void hide() 
+###### hide() 
 
 关闭弹层
 
 > [演示](https://wangdahoo.github.io/vonic-documents/demo/#/Popup)
+
+----------
+
+#### $actionSheet
+
+##### 用法
+
+```js
+$actionSheet.show({
+  // 支持三种主题样式 ios/android/weixin
+  theme: 'weixin',
+  title: '标题',
+  buttons: {
+    // 操作列表选项文字及回调函数
+    'Action - 1': () => {
+      console.log('action 1 called.')
+    },
+
+    'Action - 2': () => {
+      console.log('action 2 called.')
+    }
+  }
+})
+```
+
+##### 方法 
+
+###### show(options: Object)
+
+- options
+
+| 字段名 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| theme | 操作列表主题 | String | 否 | ios |
+| title | 操作列表标题 | String | 是 | 无 |
+| buttons | 操作列表选项文字及回调函数 | Object | 是 | 无 |
+| cancelText | 取消按钮文字（theme 为 ios 或 weixin 时有效） | String | 否 | Cancel |
+
+> [演示](https://wangdahoo.github.io/vonic-documents/demo/#/ActionSheet)
 
 ----------
 
@@ -1178,14 +1217,44 @@ options 参数
 
 ##### Modal 实例方法
 
-###### Void show()
+###### show()
 
 显示模态窗
 
-###### Void hide()
+###### hide()
 
 隐藏模态窗
 
 > [演示](https://wangdahoo.github.io/vonic-documents/demo/modal.html)
 
 ----------
+
+### Vonic.app
+
+#### setConfig(name: String)
+
+设置 `Vonic.app` 默认启动项
+
+| 启动项 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| beforeEach | 全局 before 导航钩子 | Func | 否 | 无 |
+| afterEach | 全局 after 导航钩子 | Func | 否 | 无 |
+| routerOptions | Router 构造参数（除 routes 外） | Object | 否 | 无 |
+| pushMethod | 路由切换方式 push 或 replace | String | 否 | push |
+| pageTransition | 强制定义页面切换方式 ios 或 android | String | 否 | 无 |
+
+#### getConfig(name: String)
+
+获取 `Vonic.app` 默认启动项
+
+#### nextDirection(direction: String)
+
+手动定义下一次路由切换的方向
+
+| 参数名 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| direction | 页面切换方，forward 或 back | String | 是 | 无 |
+
+#### pageContentScrollTop(value: Integer)
+
+设置或获取当前 `.page-content` 容器的滚动位置（不传 `value` 时为获取）
