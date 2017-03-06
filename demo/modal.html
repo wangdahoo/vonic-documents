@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>vonic modal example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 定制版 ionic 样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.6/dist/ionic/css/ionic.css">
+
+    <!-- 依赖库 axios/vue/vue-router -->
+    <script src="https://unpkg.com/axios@0.15.3/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router@2.2.0/dist/vue-router.min.js"></script>
+
+    <!-- vonic 核心文件 -->
+    <script src="https://unpkg.com/vonic@2.0.0-beta.6/dist/vonic.min.js"></script>
+  </head>
+  <body>
+    <!-- mount point -->
+    <von-app></von-app>
+
+    <!-- templates -->
+    <script type="text/x-template" id="my-modal">
+      <div class="page-content padding padding-top">
+        <p>
+          我有一只小毛驴我从来也不骑。
+        </p>
+
+        <button v-if="!showMore" class="button button-assertive button-small" @click="more()">show more</button>
+        <p v-if="showMore">
+          有一天我心血来潮骑它去赶集。
+        </p>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="page">
+      <div class="page has-navbar" v-nav="{title: '模态窗'}">
+        <div class="page-content padding padding-top">
+          <button class="button button-assertive button-block" @click="showModal()">默认</button>
+        </div>
+      </div>
+    </script>
+
+    <script>
+      var MyModal = {
+        template: '#my-modal',
+
+        data() {
+          return {
+            showMore: false
+          }
+        },
+
+        methods: {
+          more() {
+            this.showMore = true
+          }
+        }
+      }
+
+      var Index = {
+        template: '#page',
+
+        data() {
+          return {
+            modal: undefined
+          }
+        },
+
+        mounted() {
+          $modal.fromComponent(MyModal, {
+            title: '模态窗标题',
+            theme: 'default'
+          }).then((modal) => {
+            this.modal = modal
+          })
+        },
+
+        destroyed() {
+          if (this.modal)
+            $modal.destroy(this.modal)
+        },
+
+        methods: {
+          showModal() {
+            this.modal.show()
+          }
+        }
+      }
+
+      // Routes
+      var routes = [
+        { path: '/',component: Index }
+      ]
+
+      // Start up
+      Vue.use(Vonic.app, {
+        routes: routes
+      })
+    </script>
+  </body>
+</html>

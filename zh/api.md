@@ -894,3 +894,298 @@ options 参数
 
 ----------
 
+#### $popup
+
+##### 用法
+
+```html
+<template>
+  <div class="page has-navbar" v-nav="{title: '弹层'}">
+    <div class="page-content padding-top">
+      <div class="item item-icon-right thin-border" @click="showPopup()">
+        Show Popup
+        <i class="icon ion-ios-arrow-right"></i>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    methods: {
+      showPopup() {
+        let options = {
+          effect: 'scale',
+          title: '标题文字',
+          buttons: [
+            {text: '确定'},
+            {text: '取消'},
+          ]
+        }
+
+        let popup = $popup.fromTemplate('<p style="margin-bottom: 0; text-align: center;">内容文字</p>', options)
+
+        popup.show().then((buttonIndex) => {
+          console.log(buttonIndex)
+        })
+      }
+    }
+  }
+</script>
+```
+
+##### 方法
+
+###### Popup fromTemplate(template: String, options: Object)
+
+按模板字符串创建弹层实例
+
+- template 
+
+模板字符串
+
+- options
+
+| 字段名 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| effect | 效果 default/scale/slide | String | 否 | default |
+| title | 标题 | String | 否 | 无 |
+| cssClass | 自定义样式类 | String | 否 | 无 |
+| showClose | 是否显示关闭按钮 | Boolean | 否 | false |
+| buttons | 按钮定义 | Array | 否 | 无 |
+
+###### Popup fromTemplateUrl(templateUrl: String, options: Object)
+
+按 ajax 请求返回的模板字符串创建弹层实例
+
+- templateUrl
+
+返回模板字符串的url
+
+- options 参数
+
+同上
+
+##### Popup 实例方法
+
+###### Promise show() 
+
+显示弹层
+
+###### void hide() 
+
+关闭弹层
+
+> [演示](https://wangdahoo.github.io/vonic-documents/demo/#/Popup)
+
+----------
+
+#### $tabbar
+
+##### 用法
+
+```html
+<template>
+  <div class="page" v-tabbar="{'menus': menus, menuColor: '#B5B5B5', activeMenuColor: '#44CC00', onMenuClick: menuClicked}">
+    <router-view></router-view>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        menus: [
+          {
+            iconOn: 'ion-ios-home',
+            iconOff: 'ion-ios-home-outline',
+            text: '首页',
+            path: '/home'
+          },
+          {
+            iconOn: 'ion-ios-pricetags',
+            iconOff: 'ion-ios-pricetags-outline',
+            text: '折扣',
+            path: '/discount'
+          },
+          {
+            iconOn: 'ion-ios-cart',
+            iconOff: 'ion-ios-cart-outline',
+            text: '购物车',
+            path: '/cart',
+            badge: '5'
+          },
+          {
+            iconOn: 'ion-ios-person',
+            iconOff: 'ion-ios-person-outline',
+            text: '我的',
+            path: '/user'
+          }
+        ]
+      }
+    },
+
+    methods: {
+      menuClicked(menuIndex) {
+        console.log(menuIndex)
+      }
+    },
+
+    beforeDestroy() {
+      $tabbar.$emit('hideTabbar')
+    }
+  }
+</script>
+```
+
+对应的嵌套路由配置：
+
+```js
+  let routes = [
+    { 
+      path: '/', 
+      component: Index,
+      children: [
+        { path: 'home', component: Home },
+        { path: 'discount', component: Discount },
+        { path: 'cart', component: Cart },
+        { path: 'user', component: User }
+      ]
+    }
+  ]
+```
+
+[完整代码](https://github.com/wangdahoo/vonic-documents/blob/master/demo/tabbar.html)
+
+##### `v-tabbar`
+
+| 参数名 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| menus | 菜单项列表 | Array | 是 | 无 |
+| menuColor | 菜单字体颜色 | String | 否 | #888 |
+| activeMenuColor | 激活菜单字体颜色 | String | 否 | #EA5A49 |
+| onMenuClick | 菜单点击回调 | Function | 否 | 无 |
+
+##### menu 项
+
+| 参数名 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| iconOn | 菜单选中 icon 类 | String | 是 | 无 |
+| iconOff | 菜单未选中 icon 类 | String | 是 | 无 |
+| text | 菜单文字 | String | 是 | 无 |
+| path | 菜单对应路由的 path | String | 否 | 无 |
+| badge | 菜单对应的 badge 的文字 | String | 否 | 无 |
+
+
+> [演示](https://wangdahoo.github.io/vonic-documents/demo/tabbar.html#/home)
+
+----------
+
+#### $modal
+
+##### 用法
+
+创建一个用 `.page-content` 类包裹的内容组件 `MyModal.vue`
+
+```html
+<template>
+  <div class="page-content padding padding-top">
+    <p>
+      我有一只小毛驴我从来也不骑。
+    </p>
+
+    <button v-if="!showMore" class="button button-assertive button-small" @click="more()">show more</button>
+    <p v-if="showMore">
+      有一天我心血来潮骑它去赶集。
+    </p>
+
+    <button class="button button-assertive button-small" @click="showAlert()">show dialog</button>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        showMore: false
+      }
+    },
+
+    methods: {
+      more() {
+        this.showMore = true
+      }
+    }
+  }
+</script>
+```
+
+创建一个用于加载上述内容组件的页面组件，通过 `$modal.fromComponent` 方法加载内容组件为模态窗
+
+```html
+<template>
+  <div class="page has-navbar" v-nav="{title: '模态窗'}">
+    <div class="page-content padding padding-top">
+      <button class="button button-assertive button-block" @click="showModal()">默认</button>
+    </div>
+  </div>
+</template>
+<script>
+  import MyModal from './MyModal.vue'
+
+  export default {
+    data() {
+      return {
+        modal: undefined
+      }
+    },
+
+    mounted() {
+      $modal.fromComponent(MyModal, {
+        title: '模态窗标题',
+        theme: 'default'
+      }).then((modal) => {
+        this.modal = modal
+      })
+    },
+
+    destroyed() {
+      if (this.modal)
+        $modal.destroy(this.modal)
+    },
+
+    methods: {
+      showModal() {
+        this.modal.show()
+      }
+    }
+  }
+</script>
+```
+
+##### 方法
+
+###### Promise $modal.fromComponent(contentComponent: VueComponent, options: Object)
+
+创建模态窗
+
+- contentComponent 需要加载到modal中的内容组件
+
+- options 
+
+| 字段名 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| title | 模态窗标题 | String | 否 | 无 |
+| theme | 模态窗主题 | String | 否 | 无 |
+| destroyOnHide | 是否在调用模态窗实例的hide方法后注销模态窗实例 | Function | 否 | false |
+
+##### Modal 实例方法
+
+###### Void show()
+
+显示模态窗
+
+###### Void hide()
+
+隐藏模态窗
+
+> [演示](https://wangdahoo.github.io/vonic-documents/demo/modal.html)
+
+----------
