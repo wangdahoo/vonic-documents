@@ -1229,9 +1229,11 @@ $actionSheet.show({
 
 ----------
 
-### Vonic.app
+### 其他
 
-#### setConfig(name: String)
+#### Vonic.app
+
+##### setConfig(name: String)
 
 设置 `Vonic.app` 默认启动项
 
@@ -1243,11 +1245,11 @@ $actionSheet.show({
 | pushMethod | 路由切换方式 push 或 replace | String | 否 | push |
 | pageTransition | 强制定义页面切换方式 ios 或 android | String | 否 | 无 |
 
-#### getConfig(name: String)
+##### getConfig(name: String)
 
 获取 `Vonic.app` 默认启动项
 
-#### nextDirection(direction: String)
+##### nextDirection(direction: String)
 
 手动定义下一次路由切换的方向
 
@@ -1255,6 +1257,6 @@ $actionSheet.show({
 |-----|-----|-----|-----|-----|
 | direction | 页面切换方，forward 或 back | String | 是 | 无 |
 
-#### pageContentScrollTop(value: Integer)
+##### pageContentScrollTop(value: Integer)
 
 设置或获取当前 `.page-content` 容器的滚动位置（不传 `value` 时为获取）
