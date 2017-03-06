@@ -38,7 +38,7 @@ font-family: '-apple-system', "Helvetica Neue", "Roboto", "Segoe UI", sans-serif
   Assertive <span>#EA5A49</span>
 </div>
 <div class="color positive">
-  Assertive <span>#4A90E2</span>
+  Positive <span>#4A90E2</span>
 </div>
 <div class="color balanced">
   Balanced <span>#44CC00</span>
