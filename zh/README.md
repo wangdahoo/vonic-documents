@@ -319,3 +319,12 @@ Vue.use(Vonic.app, {
   routes: routes
 })
 ```
+
+### Webpack
+
+习惯使用 `vue init webpack my-project` 构建项目的同学，请参考这个项目。
+
+https://github.com/wangdahoo/vonic-webpack-starter
+
+
+<div style="height: 300px;"></div>
