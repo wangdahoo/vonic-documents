@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Getting Started</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 定制版 ionic 样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.10/dist/vonic.min.css">
+
+    <!-- 依赖库 axios/vue/vue-router -->
+    <script src="https://unpkg.com/axios@0.15.3/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router@2.2.1/dist/vue-router.min.js"></script>
+    <script src="https://unpkg.com/vuex@2.2.1/dist/vuex.min.js"></script>
+
+    <!-- vonic 核心文件 -->
+    <script src="https://unpkg.com/vonic@2.0.0-beta.10/dist/vonic.min.js"></script>
+  </head>
+  <body>
+    <!-- mount point -->
+    <von-app></von-app>
+
+    <style>
+      h2 {
+        font-family: Candara,Calibri,Segoe,Segoe UI,Optima,Arial,sans-serif;
+        color: #888;
+      }
+      .page.has-navbar .page-content {
+        padding-top: 100px;
+      }
+    </style>
+
+    <!-- templates -->
+    <script type="text/x-template" id="index">
+      <div class="page has-navbar" v-nav="{ title: 'Home' }">
+        <div class="page-content padding text-center">
+          <h2 class="padding">Counter</h2>
+          
+          Clicked: {{ $store.state.count }} times, count is {{ evenOrOdd }}.
+          <button class="button button-assertive button-block" @click="increment">+</button>
+          <button class="button button-positive button-block" @click="decrement">-</button>
+          <button class="button button-balanced button-block" @click="incrementIfOdd">Increment if odd</button>
+          <button class="button button-energized button-block" @click="incrementAsync">Increment async</button>
+        </div>
+      </div>
+    </script>
+
+    <script>
+      // state
+      var state = {
+        count: 0
+      }
+
+      // mutations
+      var mutations = {
+        increment: function () {
+          state.count++
+        },
+        decrement: function () {
+          state.count--
+        }
+      }
+
+      // actions
+      var actions = {
+        increment: function (ctx) {
+          ctx.commit('increment')
+        },
+        decrement: function (ctx) {
+          ctx.commit('decrement')
+        },
+        incrementIfOdd: function (ctx) {
+          if ((ctx.state.count + 1) % 2 === 0) {
+            ctx.commit('increment')
+          }
+        },
+        incrementAsync: function (ctx) {
+          setTimeout(function () {
+            ctx.commit('increment')
+          }, 1000)
+        }
+      }
+
+      var getters = {
+        evenOrOdd: function (state) {
+          return state.count % 2 === 0
+            ? 'even'
+            : 'odd'
+        }
+      }
+
+      // Store
+      var store = new Vuex.Store({
+        state: state,
+        getters: getters,
+        mutations: mutations,
+        actions: actions
+      })
+
+      // Page
+      var Index = {
+        template: '#index',
+        computed: Vuex.mapGetters([
+          'evenOrOdd'
+        ]),
+        methods: Vuex.mapActions([
+          'increment',
+          'decrement',
+          'incrementIfOdd',
+          'incrementAsync'
+        ])
+      }
+
+      // Start up
+      Vue.use(Vonic.app, {
+        routes: [ { path: '/', component: Index } ],
+        store: store
+      })
+    </script>
+  </body>
+</html>

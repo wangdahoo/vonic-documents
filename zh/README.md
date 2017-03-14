@@ -87,19 +87,19 @@ font-family: '-apple-system', "Helvetica Neue", "Roboto", "Segoe UI", sans-serif
 
 ```html
 <!-- 定制版 ionic 样式 -->
-<link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.6/dist/ionic/css/ionic.css">
+<link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.10/dist/vonic.min.css">
 
 <!-- 依赖库 axios/vue/vue-router -->
 <script src="https://unpkg.com/axios@0.15.3/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>
-<script src="https://unpkg.com/vue-router@2.2.0/dist/vue-router.min.js"></script>
+<script src="https://unpkg.com/vue-router@2.2.1/dist/vue-router.min.js"></script>
 
 <!-- vonic 核心文件 -->
-<script src="https://unpkg.com/vonic@2.0.0-beta.6/dist/vonic.min.js"></script>
+<script src="https://unpkg.com/vonic@2.0.0-beta.10/dist/vonic.min.js"></script>
 ```
 
 <p class="danger">
-  **vonic** 当前最新版本为 **2.0.0-beta.6**
+  **vonic** 当前最新版本为 **2.0.0-beta.10**
 </p>
 
 <hr/>
@@ -325,6 +325,27 @@ Vue.use(Vonic.app, {
 习惯使用 `vue init webpack my-project` 构建项目的同学，请参考这个项目。
 
 https://github.com/wangdahoo/vonic-webpack-starter
+
+
+### Vuex
+
+可以在启动单页应用的时候注入全局 Store 以支持 Vuex
+
+```js
+let store = Vuex.Store({
+  // ...
+})
+
+Vue.use(Vonic.app, {
+  routes,
+  store
+})
+```
+
+#### Counter Example
+
+- [演示](https://wangdahoo.github.io/vonic-documents/demo/vuex/counter.html) 
+- [完整代码](https://github.com/wangdahoo/vonic-documents/blob/master/demo/vuex/counter.html)
 
 
 <div style="height: 300px;"></div>

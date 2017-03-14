@@ -526,6 +526,7 @@ bgColor、tabColor 值均以 vonic 情景色表示。
   height="150" 
   pager-color="#ea5a49" 
   pager-bg-color="#e5e4e3"
+  hide-pager="false"
 >
   <swiper-item>
     <h1 style="color: #0a9dc7;" @click="onClick()">Item 1</h1>
@@ -550,12 +551,15 @@ bgColor、tabColor 值均以 vonic 情景色表示。
 | height | 高度 | String | 否 | 100% |
 | pagerColor | 导航颜色 | String | 否 | #333 |
 | pagerBgColor | 导航颜色 | String | 否 | #333 透明度40% |
+| hidePager | 不显示分页导航 | String | 否 | 'false' |
+| callback | SwiperItem 的 transitionEnd 回调 | Function | 否 | 无 |
 
 ##### 方法
 
 - go(index: Integer) 滑动到指定页
 - next() 下一页
 - prev() 上一页
+- resize() 重置 swiper 容器
 
 > [演示](https://wangdahoo.github.io/vonic-documents/demo/#/Swiper)
 
@@ -1114,6 +1118,15 @@ $actionSheet.show({
 | badge | 菜单对应的 badge 的文字 | String | 否 | 无 |
 
 
+<p class="tip">
+通过 emit `updateTabbarBadge` 事件，可以动态设置 tabbar 上的 badge
+</p>
+
+```js
+// 设置 tabbar 上第2个菜单的 badge 数字为 5
+$tabbar.$emit('updateTabbarBadge', 1, 5)
+```
+
 > [演示](https://wangdahoo.github.io/vonic-documents/demo/tabbar.html#/home)
 
 ----------
@@ -1211,11 +1224,12 @@ $actionSheet.show({
 
 | 字段名 | 描述 | 类型 | 必选 | 默认值 |
 |-----|-----|-----|-----|-----|
-| title | 模态窗标题 | String | 否 | 无 |
+| title | 模态窗标题 (标题为空时，则不显示 header bar) | String | 否 | 无 |
 | theme | 模态窗主题 | String | 否 | 无 |
-| destroyOnHide | 是否在调用模态窗实例的hide方法后注销模态窗实例 | Function | 否 | false |
+| destroyOnHide | 是否在调用模态窗实例的hide方法后注销模态窗实例 | Boolean | 否 | false |
+| onHide | 关闭模态窗回调函数 | Function | 否 | 无 |
 
-##### Modal 实例方法
+##### Modal 实例方法、属性
 
 ###### show()
 
@@ -1225,17 +1239,40 @@ $actionSheet.show({
 
 隐藏模态窗
 
+###### content
+
+contentComponent 对应的 Vue 实例
+
 > [演示](https://wangdahoo.github.io/vonic-documents/demo/modal.html)
 
+----------
+
+#### $app
+
+##### 方法
+
+###### setTitle(title: String)
+
+设置当前导航栏标题文字
+  
 ----------
 
 ### 其他
 
 #### Vonic.app
 
+##### Vue.use(Vonic.app, params)
+
+`params` 应用启动参数
+
+| 启动项 | 描述 | 类型 | 必选 | 默认值 |
+|-----|-----|-----|-----|-----|
+| routes | 单页应用路由 | Array | 是 | 无 |
+| store | Vuex Store | Object | 否 | 无 |
+
 ##### setConfig(name: String)
 
-设置 `Vonic.app` 默认启动项
+设定 `Vonic.app` 默认选项
 
 | 启动项 | 描述 | 类型 | 必选 | 默认值 |
 |-----|-----|-----|-----|-----|
@@ -1247,7 +1284,7 @@ $actionSheet.show({
 
 ##### getConfig(name: String)
 
-获取 `Vonic.app` 默认启动项
+获取 `Vonic.app` 默认选项
 
 ##### nextDirection(direction: String)
 
