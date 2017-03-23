@@ -4,7 +4,7 @@ self.$config = {
    default: [
      {title: '指南', path: '/'},
      {title: 'API', path: '/zh/api'},
-     {title: '简体中文', type: 'dropdown', items: [
+     {title: 'English', type: 'dropdown', items: [
          {title: '简体中文', path: '/'},
          {title: 'English', path: '/en/'}
      ]}
@@ -12,7 +12,7 @@ self.$config = {
    english: [
      {title: 'Guide', path: '/en/'},
      {title: 'API', path: '/en/api'},
-     {title: 'English', type: 'dropdown', items: [
+     {title: '简体中文', type: 'dropdown', items: [
          {title: '简体中文', path: '/'},
          {title: 'English', path: '/en/'}
      ]}
