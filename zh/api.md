@@ -1,5 +1,6 @@
 ---
 title: API
+nav: default
 ---
 
 ## API
@@ -37,10 +38,10 @@ title: API
 ##### 用法
 
 ```html
-<von-input 
-  type="text" 
-  v-model="username" 
-  placeholder="用户名/手机/邮箱" 
+<von-input
+  type="text"
+  v-model="username"
+  placeholder="用户名/手机/邮箱"
   label="用户名">
 </von-input>
 ```
@@ -520,11 +521,11 @@ bgColor、tabColor 值均以 vonic 情景色表示。
 ##### 用法
 
 ```html
-<swiper ref="swiper" 
-  direction="horizontal" 
-  width="100%" 
-  height="150" 
-  pager-color="#ea5a49" 
+<swiper ref="swiper"
+  direction="horizontal"
+  width="100%"
+  height="150"
+  pager-color="#ea5a49"
   pager-bg-color="#e5e4e3"
   hide-pager="false"
 >
@@ -830,7 +831,7 @@ $dialog.alert({
   // 效果
   effect: 'default',
   // 标题
-  title: '提示', 
+  title: '提示',
   // 内容
   content: '这是一个警告框',
   // 按钮文本
@@ -943,7 +944,7 @@ options 参数
 
 按模板字符串创建弹层实例
 
-- template 
+- template
 
 模板字符串
 
@@ -971,11 +972,11 @@ options 参数
 
 ##### Popup 实例方法
 
-###### show() 
+###### show()
 
 显示弹层，返回一个在点击关闭后resolve 的 Promise
 
-###### hide() 
+###### hide()
 
 关闭弹层
 
@@ -1005,7 +1006,7 @@ $actionSheet.show({
 })
 ```
 
-##### 方法 
+##### 方法
 
 ###### show(options: Object)
 
@@ -1083,8 +1084,8 @@ $actionSheet.show({
 
 ```js
   let routes = [
-    { 
-      path: '/', 
+    {
+      path: '/',
       component: Index,
       children: [
         { path: 'home', component: Home },
@@ -1220,7 +1221,7 @@ $tabbar.$emit('updateTabbarBadge', 1, 5)
 
 - contentComponent 需要加载到modal中的内容组件
 
-- options 
+- options
 
 | 字段名 | 描述 | 类型 | 必选 | 默认值 |
 |-----|-----|-----|-----|-----|
@@ -1254,7 +1255,7 @@ contentComponent 对应的 Vue 实例
 ###### setTitle(title: String)
 
 设置当前导航栏标题文字
-  
+
 ----------
 
 ### 其他
