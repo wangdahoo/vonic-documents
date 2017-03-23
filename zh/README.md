@@ -1,6 +1,8 @@
 ---
 title: 指南
+nav: default
 ---
+
 
 ## <div class="code-name">VONIC</div>
 
@@ -219,9 +221,9 @@ Vue.use(Vonic.app, {
 
 | 组件名称 | 组件标签 | 描述 |
 |-----|-----|-----|
-| MdButton | `<md-button>` |Material Design 风格按钮 | 
-| VonInput | `<von-input>` | 输入框 | 
-| Search | `<search>` | 搜索框 | 
+| MdButton | `<md-button>` |Material Design 风格按钮 |
+| VonInput | `<von-input>` | 输入框 |
+| Search | `<search>` | 搜索框 |
 | VonRadio | `<von-radio>` | 单选框 |
 | VonCheckbox | `<von-checkbox>` | 复选框 |
 | VonToggle | `<von-toggle>` | 开关按钮 |
@@ -248,22 +250,22 @@ Vue.use(Vonic.app, {
 
 | 服务名称（全局变量） | 描述 |
 |-----|-----|
-| `$toast` | 文字提示 | 
-| `$loading` | 加载提示 | 
-| `$dialog` | 对话框 | 
-| `$popup` | 弹层 | 
-| `$actionSheet` | 操作列表 | 
-| `$tabbar` | 选项栏 | 
-| `$sidebar` | 侧边栏 | 
-| `$modal` | 模态窗 | 
+| `$toast` | 文字提示 |
+| `$loading` | 加载提示 |
+| `$dialog` | 对话框 |
+| `$popup` | 弹层 |
+| `$actionSheet` | 操作列表 |
+| `$tabbar` | 选项栏 |
+| `$sidebar` | 侧边栏 |
+| `$modal` | 模态窗 |
 | `$storage` | 本地存储 |
 
 #### **vonic** 指令
 
 | 指令 | 描述 |
 |-----|-----|
-| `v-nav` | 导航栏指令 | 
-| `v-tabbar` | 选择栏指令 | 
+| `v-nav` | 导航栏指令 |
+| `v-tabbar` | 选择栏指令 |
 | `v-tabbar-menu-index` | 选择栏默认菜单指令 |
 
 <hr/>
@@ -344,7 +346,7 @@ Vue.use(Vonic.app, {
 
 #### Counter Example
 
-- [演示](https://wangdahoo.github.io/vonic-documents/demo/vuex/counter.html) 
+- [演示](https://wangdahoo.github.io/vonic-documents/demo/vuex/counter.html)
 - [完整代码](https://github.com/wangdahoo/vonic-documents/blob/master/demo/vuex/counter.html)
 
 
