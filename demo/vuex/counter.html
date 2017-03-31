@@ -104,6 +104,9 @@
         computed: Vuex.mapGetters([
           'evenOrOdd'
         ]),
+        mounted: function () {
+          console.log(this.$store);
+        },
         methods: Vuex.mapActions([
           'increment',
           'decrement',
