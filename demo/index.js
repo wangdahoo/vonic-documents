@@ -491,6 +491,14 @@ var ToastAndLoading = {
       // setTimeout(function () {
       //   $toast.hide()
       // }, 5000)
+    },
+
+    loadingAndToast(tips) {
+      $loading.show(tips);
+
+      setTimeout(() => {
+        $toast.show('加载完成！')
+      }, 1000)
     }
   }
 }

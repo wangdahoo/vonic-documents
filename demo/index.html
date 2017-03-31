@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- 定制版 ionic 样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/vonic@2.0.0-beta.11/dist/vonic.min.css">
+    <link rel="stylesheet" href="https://unpkg.qkcdn.com/vonic@2.0.0-beta.13/dist/vonic.min.css">
 
     <!-- 依赖库 axios/vue/vue-router -->
-    <script src="https://unpkg.com/axios@0.15.3/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/vue-router@2.2.1/dist/vue-router.min.js"></script>
-    <script src="https://unpkg.com/vuex@2.2.1/dist/vuex.min.js"></script>
+    <script src="https://unpkg.qkcdn.com/axios@0.15.3/dist/axios.min.js"></script>
+    <script src="https://unpkg.qkcdn.com/vue@2.2.5/dist/vue.min.js"></script>
+    <script src="https://unpkg.qkcdn.com/vue-router@2.3.0/dist/vue-router.min.js"></script>
+    <script src="https://unpkg.qkcdn.com/vuex@2.2.1/dist/vuex.min.js"></script>
 
     <!-- vonic 核心文件 -->
-    <script src="https://unpkg.com/vonic@2.0.0-beta.11/dist/vonic.min.js"></script>
+    <script src="https://unpkg.qkcdn.com/vonic@2.0.0-beta.13/dist/vonic.min.js"></script>
 
 
     <link rel="stylesheet" href="index.css">
@@ -538,6 +538,10 @@
             </item>
             <item class="item-icon-right" @click.native="loading('正在加载..')">
               Loading <span class="item-note">加载提示</span>
+              <i class="icon ion-ios-arrow-right"></i>
+            </item>
+            <item class="item-icon-right" @click.native="loadingAndToast('正在加载..')">
+              Loading &amp; Toast
               <i class="icon ion-ios-arrow-right"></i>
             </item>
           </list>
